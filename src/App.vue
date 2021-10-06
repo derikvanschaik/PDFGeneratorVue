@@ -1,8 +1,17 @@
 <template>
   
-  <the-header title="Pdf Generator" :selected="headerOutput"></the-header>
-  <button v-if="selectedCount > 0" @click="makePdf">Generate Pdf</button>
-  <image-component-list :images="images" @alter-selected="alterSelected" @submit-caption="alterCaption"></image-component-list>
+  <the-header 
+      title="Pdf Generator" 
+      :selected="headerOutput" 
+      :selectedCount="selectedCount" 
+      @make-pdf="makePdf"> 
+  </the-header>
+
+  <image-component-list 
+      :images="images" 
+      @alter-selected="alterSelected" 
+      @submit-caption="alterCaption">
+  </image-component-list>
 
 </template>
 
@@ -79,10 +88,10 @@ export default {
         if (this.selected[index].caption){
           doc.text(this.selected[index].caption, centre_x, y + 55);
         } 
-      }); 
+      });
 
-      doc.save('yourpdf.pdf'); 
-      
+      doc.save('yourpdf.pdf');
+      location.reload(); // quick hack to reset the page 
     }
   }
 } 
@@ -96,6 +105,16 @@ export default {
   text-align: center;
   color: #2c3e50;
   margin-top: 60px; 
+}
+button {
+  background-color: orange; 
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
 }
 
 </style>

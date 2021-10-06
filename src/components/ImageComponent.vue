@@ -1,12 +1,13 @@
 <template>
 
-    <input type="checkbox" :id="imageName" @change="toggleSelected"/>
+    <input type="checkbox" :id="imageName" @change="toggleSelected" />
     <label :for="imageName">
         <img :src="require(`/public/images/${imageName}.jpeg`)" width="240" height="200"> 
     </label>
     <div v-if="selected">
+      <p>{{submissionStatus}}</p>
       <input type="text" v-model="caption" placeholder="enter caption">
-      <button @click="submitCaption">Submit Caption</button> 
+      <button @click="submitCaption">Submit {{submissionCount >0?'New':''}} Caption</button> 
     </div> 
 
 </template>
@@ -18,14 +19,18 @@ export default {
         return{
             selected: false,
             caption: '',
+            submissionStatus: 'No Caption Submitted',
+            submissionCount: 0, 
         }; 
     },
     watch:{
       selected(){
         if(!this.selected){
-          this.caption = ''; 
+          this.caption = '';
+          this.submissionStatus = 'No Caption Submitted';
+          this.submissionCount = 0; 
         }
-      }
+      },
     }, 
     methods:{
         toggleSelected(){
@@ -33,7 +38,13 @@ export default {
             this.$emit('toggled-image', this.selected, this.imageName);
         },
         submitCaption(){
-          this.$emit('submit-caption', this.imageName, this.caption); 
+          if(!this.caption.length){
+            return this.submissionStatus = 'Cannot Submit An Empty Caption'; 
+          }
+          this.submissionStatus = `Submitted Caption '${this.caption}'`; 
+          this.$emit('submit-caption', this.imageName, this.caption);
+          this.caption = '';
+          this.submissionCount++; 
 
         }
     }

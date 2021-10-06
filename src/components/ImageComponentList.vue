@@ -32,8 +32,9 @@ export default {
 </script>
 
 <style scoped>
-
 ul {
+  padding-top: 7%;
+  padding-bottom: 10%; 
   width: 40%; 
   list-style-type: none;
   padding-left: 30%;
