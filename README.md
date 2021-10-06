@@ -1,5 +1,9 @@
-# my-app
 
+# my-app
+## Installing Vue cli
+```
+npm install -g @vue/cli
+```
 ## Project setup
 ```
 npm install
