@@ -2,6 +2,10 @@
 ![Alt Text](https://github.com/derikvanschaik/PDFGeneratorVue/blob/main/application-screenshare/demo.gif)
 
 # Instructions for running the Application
+## Additional Dependencies:
+```
+npm install jspdf
+```
 ## Installing Vue cli
 ```
 npm install -g @vue/cli
