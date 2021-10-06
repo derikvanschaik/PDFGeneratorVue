@@ -1,5 +1,7 @@
+# Demo:
+![Alt Text](https://github.com/derikvanschaik/PDFGeneratorVue/blob/main/application-screenshare/demo.gif)
 
-# my-app
+# Instructions for running the Application
 ## Installing Vue cli
 ```
 npm install -g @vue/cli
